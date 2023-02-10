@@ -61,7 +61,7 @@ def main():
                     break
                 elif 'ye' or 'yup' or 'ya' in correction:
                     print('Perfect! Dietary restrictions:', dietary_preferences)
-                break
+                    break
             else: 
                 print('Dietary restriction not found! We either not have it in the system or you suck at spelling IDIOT, please try again')
     elif DIET == 'no':
