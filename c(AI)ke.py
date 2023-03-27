@@ -33,8 +33,8 @@ def main():
         #if this is the first time the program runs it will ask dietary retrictions (the else statment is explained later)
             if len(dietary_preferences)==0:
                 dietary_req = input("What are your dietary restrictions? (you can add more than one) ").lower()
-            else: 
-                dietary_req = input("You have one more chance to properly spell the ones you missed/forgot ").lower()
+            #else: 
+            #    dietary_req = input("You have one more chance to properly spell the ones you missed/forgot.").lower()
 
             # these if statements will append the relevant restrictions even if the user writes "vegetarian, vegan and I guess pescatarian"
             if 'vegetarian' in dietary_req.lower():
@@ -47,20 +47,26 @@ def main():
                 dietary_preferences.append('halal')
             if 'lactose' in dietary_req.lower():
                 dietary_preferences.append('lactose free')
+            if 'other' in dietary_req.lower():
+                dietary_other = input("Enter manually").lower()
+                dietary_preferences.append(str(dietary_other.lower()))
+                dietary_req = 'ok'
             #there are ike 5-10 more we can add
 
             
-            if len(dietary_preferences)>0:
+            elif len(dietary_preferences)>0:
                 print('Dietary restrictions:', dietary_preferences)
-                correction = input("Just to confirm, your restrictions are the above? ").lower()
+                correction = input("Just to confirm, your restrictions are the above?(yes/no) ").lower()
 
-                if 'maybe' in correction:
-                    print('TI MAYBE RE MPAGLAMA? RE FIGE RE MALAKA APO DO RE BRO')
+                if 'yes' in correction:
+                    print('Perfect! Dietary restrictions:', dietary_preferences)
+                    break
+                elif 'no' in correction:
+                    dietary_req=input('If you entered your dietary preferences correctly and it did not appear in the list please write Other')
+                else:
+                    print('TI', correction, 'RE MPAGLAMA? RE FIGE RE MALAKA APO DO RE BRO')
                     dietary_preferences=[]
                     print('otan eisai malakas den sou dinoume options')
-                    break
-                elif 'ye' or 'yup' or 'ya' in correction:
-                    print('Perfect! Dietary restrictions:', dietary_preferences)
                     break
             else: 
                 print('Dietary restriction not found! We either not have it in the system or you suck at spelling IDIOT, please try again')
@@ -69,7 +75,6 @@ def main():
         print('Alright bet. Dietary restrictions:', dietary_preferences)
     else: 
         print('Are you illiterate? I said YES/NO')
-
 
     # Ask the user for ingredients
     ingredients = input("Tell me what ingredients you have, if you have any that is. Separated by commas please, I'm dumb. : ").split(',')
